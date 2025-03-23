@@ -1,23 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mundo Pet - Agenda</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <h1>🐾 MUNDO PET</h1>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div>
+          <h2>Sua agenda</h2>
+          <p>Aqui você pode ver todos os clientes e serviços agendados para hoje.</p>
+        </div>
+        <input type="date" id="dateFilter" />
+      </header>
+
+      <section class="agenda">
+        <div class="period">
+          <div class="period-header">
+            <span>🌅 Manhã</span>
+            <span>09h-12h</span>
+          </div>
+          <ul class="appointments-list" id="morning-list"></ul>
+        </div>
+
+        <div class="period">
+          <div class="period-header">
+            <span>🌇 Tarde</span>
+            <span>13h-18h</span>
+          </div>
+          <ul class="appointments-list" id="afternoon-list"></ul>
+        </div>
+
+        <div class="period">
+          <div class="period-header">
+            <span>🌙 Noite</span>
+            <span>19h-21h</span>
+          </div>
+          <ul class="appointments-list" id="night-list"></ul>
+        </div>
+      </section>
+
+      <button id="newAppointment" class="new-btn">NOVO AGENDAMENTO</button>
+      <button id="toggleFinalizados" class="new-btn">Ver Finalizados</button>
+      <button id="exportarPDF" class="new-btn">Exportar para PDF</button>
     </main>
-  </body>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay hidden" id="modal">
+    <div class="modal">
+      <h2>Agende um atendimento</h2>
+      <p>Preencha os dados do cliente para realizar o agendamento:</p>
+      <form id="form-agendamento">
+        <label class="input-group">
+          Nome do tutor:
+          <input type="text" id="tutor" placeholder="Ex: Helena Souza" required />
+        </label>
+      
+        <label class="input-group">
+          Nome do pet:
+          <input type="text" id="pet" placeholder="Ex: Cheddar" required />
+        </label>
+      
+        <label class="input-group icon-input">
+          Telefone:
+          <input type="tel" id="telefone" placeholder="(00) 0 0000-0000" />
+        </label>
+      
+        <label class="input-group">
+          Descrição do serviço:
+          <textarea id="servico" placeholder="Banho e tosa" required></textarea>
+        </label>
+      
+        <div class="form-row">
+          <label class="input-group">
+            Data:
+            <input type="date" id="data-agendamento" required />
+          </label>
+          <label class="input-group">
+            Hora:
+            <input type="time" id="horario" required />
+            <span class="error-msg" id="erro-horario"></span>
+          </label>
+        </div>
+      
+        <div class="modal-actions">
+          <button type="button" id="cancelar">Cancelar</button>
+          <button type="submit" class="btn-primary">Agendar</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

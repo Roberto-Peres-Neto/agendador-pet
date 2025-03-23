@@ -1,46 +1,272 @@
-* {
-  box-sizing: border-box;
+:root {
+  --bg-primary: #151515;
+  --bg-secondary: #1E1E1E;
+  --brand: #9282FA;
+  --text-primary: #FFFFFF;
+  --text-secondary: #98959D;
+  --text-tertiary: #666666;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
-  color: black;
-  background-color: white;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-nav {
+.app-container {
   display: flex;
-  flex-wrap: wrap;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--bg-secondary);
+  padding: 1rem 2rem;
+  font-weight: bold;
+  color: var(--brand);
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.top-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.top-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+input[type="date"] {
+  background: var(--bg-secondary);
+  border: none;
   padding: 0.5rem;
-  gap: 0.5rem;
-  border-bottom: solid 1px #aaa;
-  background-color: #eee;
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
 }
 
-nav a {
-  display: inline-block;
-  min-width: 9rem;
-  padding: 0.5rem;
-  border-radius: 0.2rem;
-  border: solid 1px #aaa;
-  text-align: center;
-  text-decoration: none;
-  color: #555;
+.agenda {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-nav a[aria-current='page'] {
-  color: #000;
-  background-color: #d4d4d4;
-}
-
-main {
+.period {
+  background: var(--bg-secondary);
+  border-radius: 12px;
   padding: 1rem;
 }
 
-h1 {
+.period-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
   font-weight: bold;
-  font-size: 1.5rem;
+}
+
+.appointments-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.appointments-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.new-btn {
+  margin-top: 1rem;
+  background: var(--brand);
+  color: #fff;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  max-width: 240px;
+  transition: all 0.2s ease;
+}
+
+.new-btn:hover {
+  background: #7b6ceb;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: #9282FA;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-btn:hover {
+  opacity: 0.6;
+}
+
+/* Modal novo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #202020;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 480px;
+  width: 100%;
+}
+
+.modal h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.modal p {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal label {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  margin-top: 0.3rem;
+  background-color: #111;
+  color: #fff;
+}
+
+.modal textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-row label {
+  flex: 1;
+}
+
+.modal-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-actions button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #7e6ae2;
+}
+
+input.erro {
+  border: 2px solid #e74c3c;
+}
+
+.error-msg {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: #ccc;
+  font-size: 0.85rem;
+}
+
+.icon-input input {
+  padding-left: 2rem;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/126/126509.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 10px center;
+}
+
+/* Para outros ícones, você pode usar classes personalizadas também */
+
+input,
+textarea {
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .new-btn {
+    width: 100%;
+  }
 }
